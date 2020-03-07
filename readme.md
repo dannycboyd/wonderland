@@ -1,4 +1,4 @@
-#Pin mappings
+# Pin mappings
 The Arduino Pro Micro has an ATMega34u chip on it. The breakout on the board doesn't match up with the internal naming of the pins, so I've made a reference of what I used here. Used a combination of this chip reference https://www.arduino.cc/en/Hacking/PinMapping32u4 and this board reference https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png. Specifically, the pins are organized into groups called ports, generally split by functionality. Analogue pin 3 (A3 on the sparkfun board reference) is read in the code as Port F pin 4 (PF4 in the arduino reference). 
 
 RHS:
