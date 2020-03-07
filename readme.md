@@ -7,19 +7,52 @@ The `LAYOUT` macro has two parts, the first is a single dimension array which I 
 The second part will need to include those spaces as `KC_NO` so that the board knows to not expect inputs from those spaces.
 
 For example. A keyboard with two keys on the top row and 3 on the bottom row could be created like so:
+_keyboard.h_
 ```
 #define LAYOUT_3x3( \
   k00,      k02, \
   k10, k11, k12 \
 ) \
 { \
-  { k00, k02 }, \
+  { k00, KC_NO, k02 }, \
   { k10, k11, k12 } \
 }
 ```
 
+_config.h_
+```
+#define MATRIX_ROWS = 2
+#define MATRIX_COLS = 3
+
+#define MATRIX_ROW_PINS { ... }
+#define MATRIX_COL_PINS { ... }
+```
+
 ## Keymap
 The keymap lives in a folder next to the keyboard. The mapping's name is the foldername, and the files inside are `config.h` and `keymap.c`. The map contains the keycode assignment for the switches in the `LAYOUT`.
+
+Going along with our example above, we can make a key mapping as follows:
+
+_keymap.c_
+```
+enum layer_names {
+  _BASE
+};
+
+
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    /* Base */
+    [_BASE] = LAYOUT(
+      KC_A,               KC_B,
+      KC_LSFT,  KC_SPC,   KC_ENT
+    ),
+};
+```
+This layout assigns the letter A and B to the top row of the keyboard,
+and left shift, space, and enter to the bottom row. Note that it is a flat array, like the first chunk of the `keyboard::LAYOUT`, not a two-dimensional one. In addition, we do not need to add `KC_NO` no-ops to this mapping, they layout handles it for us.
+
+A full list of keycodes can be found in the [QMK documentation](https://docs.qmk.fm/#/keycodes)
 
 # Pin mappings
 The Arduino Pro Micro has an ATMega34u chip on it. The breakout on the board doesn't match up with the internal naming of the pins, so I've made a reference of what I used here.
