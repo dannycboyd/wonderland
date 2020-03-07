@@ -61,6 +61,7 @@ Used a combination of this [Arduino chip reference](https://www.arduino.cc/en/Ha
 ## RHS:
 ### Rows:
 | Board Pin | Pin In Code |
+|----|----:|
 | TX1 | D3 |
 | 4 | D4 |
 | 5 | C6 |
@@ -70,6 +71,7 @@ Used a combination of this [Arduino chip reference](https://www.arduino.cc/en/Ha
 
 ### Cols:
 | Board Pin | Pin In Code |
+|----|----:|
 | A3 | F4 |
 | A2 | F5 |
 | A1 | F6 |
